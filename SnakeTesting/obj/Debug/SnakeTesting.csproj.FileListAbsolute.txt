@@ -1,0 +1,9 @@
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\bin\Debug\SnakeTesting.exe.config
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\obj\Debug\SnakeTesting.csprojResolveAssemblyReference.cache
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\obj\Debug\SnakeTesting.Form1.resources
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\obj\Debug\SnakeTesting.Properties.Resources.resources
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\obj\Debug\SnakeTesting.csproj.GenerateResource.Cache
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\bin\Debug\SnakeTesting.exe
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\bin\Debug\SnakeTesting.pdb
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\obj\Debug\SnakeTesting.exe
+C:\Users\dbake_000\Documents\GitHub\head-first-c-sharp\SnakeTesting\SnakeTesting\obj\Debug\SnakeTesting.pdb
