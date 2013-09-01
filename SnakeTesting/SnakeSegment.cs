@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SnakeTesting
+namespace Snake
 {
     // A segment of the snake. The snake is a list of segments.
 

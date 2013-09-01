@@ -1,4 +1,4 @@
-﻿namespace SnakeTesting
+﻿namespace Snake
 {
     partial class Form1
     {

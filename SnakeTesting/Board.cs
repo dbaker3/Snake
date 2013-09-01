@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SnakeTesting
+namespace Snake
 {
     // The gameboard. Has a playfield 2d array. Array elements have a 
     // state showing what they contain : empty, food, snake

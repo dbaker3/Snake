@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SnakeTesting
+namespace Snake
 {
     class Snake
     {
@@ -21,7 +21,7 @@ namespace SnakeTesting
             segments.Add(new SnakeSegment(0, 0, false, false));
         }
         
-        public void Slither(Utility.Movements direction = Utility.Movements.same)
+        public void Move() //Utility.Movements direction = Utility.Movements.same)
         {
             int snakeLength = segments.Count;
             for (int i = snakeLength - 1; i >= 0; i--) // Move each segment starting at END OF TAIL
@@ -31,13 +31,13 @@ namespace SnakeTesting
                     //segments[i].AnnounceLocation();
                     if (segments[i].IsHead)
                     {
-                        if (direction == Utility.Movements.same)
-                            direction = this.UserGivenDirection; // use previous direction
+                        //if (direction == Utility.Movements.same)
+                        //    direction = this.UserGivenDirection; // use previous direction
 
-                        this.UserGivenDirection = direction; // store new direction
+                        //this.UserGivenDirection = direction; // store new direction
 
                         // TODO: Do move
-                        switch (direction)
+                        switch (UserGivenDirection) // (direction)
                         {
                             case Utility.Movements.up:
                                 // TODO: boundary check
