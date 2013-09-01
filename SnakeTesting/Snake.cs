@@ -10,11 +10,11 @@ namespace Snake
     {
         List<SnakeSegment> segments;
 
-        public Utility.Movements UserGivenDirection { set; private get; }
+        public Utility.Movements Direction { set; private get; }
 
         public Snake()
         {
-            UserGivenDirection = Utility.Movements.right;
+            Direction = Utility.Movements.right;
             segments = new List<SnakeSegment>();
             segments.Add(new SnakeSegment(0, 2, true, false)); // snake head
             segments.Add(new SnakeSegment(0, 1, false, false));
@@ -37,7 +37,7 @@ namespace Snake
                         //this.UserGivenDirection = direction; // store new direction
 
                         // TODO: Do move
-                        switch (UserGivenDirection) // (direction)
+                        switch (Direction) // (direction)
                         {
                             case Utility.Movements.up:
                                 // TODO: boundary check
@@ -97,7 +97,7 @@ namespace Snake
             // add segment to list
             // give it same location as butt
             segments.Add(new SnakeSegment(leaderX, leaderY));
-            // don't move it on next slither (implemented in slither method)
+            // don't move it on next slither (implemented in Move method)
             //System.Windows.Forms.MessageBox.Show(segments.Count.ToString());
         }
 

@@ -46,7 +46,7 @@ namespace Snake
             //Utility.Movements direction = Utility.Movements.right;
             //freddie.Move(direction);
 
-            freddie.UserGivenDirection = Utility.Movements.right;
+            freddie.Direction = Utility.Movements.right;
             freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
@@ -62,7 +62,7 @@ namespace Snake
             //Utility.Movements direction = Utility.Movements.down;
             //freddie.Move(direction);
 
-            freddie.UserGivenDirection = Utility.Movements.down;
+            freddie.Direction = Utility.Movements.down;
             freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
@@ -74,14 +74,17 @@ namespace Snake
         private void getUserInput() 
         { 
             // get user input if any
-            // set freddie.UserGivenDirection if input given
+            // set freddie.Direction if given
+            // otherwise freddie will continue in last assigned direction
         }
        
         private void doSnakeStuff() 
         {
             // limit speed of snake's movement here with timer or stopwatch
             // move snake
+
             // freddie.Move();
+            
             // 
         }
         private void drawBoard() 
