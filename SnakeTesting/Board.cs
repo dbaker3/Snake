@@ -11,21 +11,21 @@ namespace Snake
 
     static class Board
     {
-        const int playfieldWidth = 10;
-        const int playfieldHeight = 10;
+        public const int PlayfieldWidth = 50;
+        public const int PlayfieldHeight = 50;
 
         public enum PositionStates
         {
             empty, food, snake
         }       
 
-        public static PositionStates[,] Playfield = new PositionStates[playfieldWidth, playfieldHeight];
+        private static PositionStates[,] Playfield = new PositionStates[PlayfieldWidth, PlayfieldHeight];
 
         static Board() // Initialize all spaces empty
         {
-            for (int i = 0; i < playfieldWidth; i++)
+            for (int i = 0; i < PlayfieldWidth; i++)
             {
-                for (int j = 0; j < playfieldHeight; j++)
+                for (int j = 0; j < PlayfieldHeight; j++)
                 {
                     Playfield[i, j] = PositionStates.empty;
                 }
@@ -35,6 +35,11 @@ namespace Snake
         public static void SetPositionStatus(int x, int y, PositionStates state)
         {
             Playfield[x, y] = state;
+        }
+
+        public static PositionStates GetPositionStatus(int x, int y)
+        {
+            return Playfield[x, y];
         }
 
     }

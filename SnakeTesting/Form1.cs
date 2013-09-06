@@ -87,10 +87,21 @@ namespace Snake
             
             // 
         }
+
         private void drawBoard() 
         {
-            // freddie.GetLocations()
-            // draw board
+            // Get state of each area of board
+            for (int x = 0; x <= Board.PlayfieldWidth; x++)
+            {
+                for (int y = 0; y <= Board.PlayfieldHeight; y++)
+                {
+                    // set state on form's board
+                    // state = Board.GetPositionStatus(x, y);
+                }
+            }
+             
+            // draw board on form
+
         }
 
 
