@@ -36,7 +36,7 @@
             // 
             // buttonMoveRight
             // 
-            this.buttonMoveRight.Location = new System.Drawing.Point(233, 227);
+            this.buttonMoveRight.Location = new System.Drawing.Point(226, 274);
             this.buttonMoveRight.Name = "buttonMoveRight";
             this.buttonMoveRight.Size = new System.Drawing.Size(39, 23);
             this.buttonMoveRight.TabIndex = 0;
@@ -46,9 +46,9 @@
             // 
             // buttonAddSegment
             // 
-            this.buttonAddSegment.Location = new System.Drawing.Point(12, 227);
+            this.buttonAddSegment.Location = new System.Drawing.Point(181, 245);
             this.buttonAddSegment.Name = "buttonAddSegment";
-            this.buttonAddSegment.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddSegment.Size = new System.Drawing.Size(84, 23);
             this.buttonAddSegment.TabIndex = 1;
             this.buttonAddSegment.Text = "Add Segment";
             this.buttonAddSegment.UseVisualStyleBackColor = true;
@@ -56,15 +56,15 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Location = new System.Drawing.Point(181, 139);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(260, 157);
+            this.textBox1.Size = new System.Drawing.Size(129, 100);
             this.textBox1.TabIndex = 2;
             // 
             // buttonDown
             // 
-            this.buttonDown.Location = new System.Drawing.Point(188, 227);
+            this.buttonDown.Location = new System.Drawing.Point(181, 274);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(39, 23);
             this.buttonDown.TabIndex = 3;
@@ -76,13 +76,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 262);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(337, 320);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonAddSegment);
             this.Controls.Add(this.buttonMoveRight);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Snake";
             this.ResumeLayout(false);
             this.PerformLayout();
 

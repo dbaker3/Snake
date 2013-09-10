@@ -13,11 +13,18 @@ namespace Snake
     public partial class Form1 : Form
     {
         Snake freddie;
+        //Graphics graph;
+        //Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
         public Form1()
         {
             InitializeComponent();
             freddie = new Snake();
+
+
+            
+
 
             // Run game loop in new thread so form stays responsive
             BackgroundWorker bw = new BackgroundWorker();
@@ -28,12 +35,26 @@ namespace Snake
                     while (true)    // Game Loop
                     {
                         //TODO: check time
-                        
+                        sw.Start();
+
                         getUserInput();
                         doSnakeStuff();
                         drawBoard();
+                        
+                        //// graphics testing
+                        //graph = CreateGraphics();
+                        //graph.DrawImage(bmSnakeSeg, 1, 1);
+
 
                         //TODO: wait X ms - time lapsed
+                        sw.Stop();
+                        
+
+                        System.Threading.Thread.Sleep(150 - (int)sw.ElapsedMilliseconds);
+                        //MessageBox.Show(sw.ElapsedMilliseconds.ToString());
+
+                        sw.Reset();
+                        
                     }
                 });
             bw.RunWorkerAsync();
@@ -83,25 +104,37 @@ namespace Snake
             // limit speed of snake's movement here with timer or stopwatch
             // move snake
 
-            // freddie.Move();
+            freddie.Move();
             
             // 
         }
 
         private void drawBoard() 
         {
+            // TODO: draw rectangles instead of loading bitmap?
+            Graphics graph;
+            graph = CreateGraphics();
+            Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
+
+            Board.PositionStates state = Board.PositionStates.empty;
+
+            // TODO: need to query snake for location of each segment instead of looping through board.
             // Get state of each area of board
-            for (int x = 0; x <= Board.PlayfieldWidth; x++)
+            for (int x = 0; x < Board.PlayfieldWidth; x++)
             {
-                for (int y = 0; y <= Board.PlayfieldHeight; y++)
+                for (int y = 0; y < Board.PlayfieldHeight; y++)
                 {
                     // set state on form's board
-                    // state = Board.GetPositionStatus(x, y);
+                    state = Board.GetPositionStatus(x, y);
+
+                    // draw segments
+                    if (Board.GetPositionStatus(x,y) == Board.PositionStates.snake)
+                        graph.DrawImage(bmSnakeSeg, x * 10, y * 10);
                 }
             }
              
             // draw board on form
-
+            
         }
 
 

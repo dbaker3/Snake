@@ -109,7 +109,7 @@ namespace Snake
             for (int i = snakelength - 1; i >= 0; i--)
             {
                 locations += "x = " + segments[i].X + " y = " + segments[i].Y + " IsHead = " + segments[i].IsHead.ToString() + "\r\n";
-
+                
 
             }
             return locations;
