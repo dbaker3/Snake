@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Snake
 {
     public partial class Form1 : Form
     {
         Snake freddie;
-        //Graphics graph;
-        //Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
+        Graphics graph;
+        Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
         public Form1()
@@ -50,8 +51,8 @@ namespace Snake
                         sw.Stop();
                         
 
-                        System.Threading.Thread.Sleep(150 - (int)sw.ElapsedMilliseconds);
-                        //MessageBox.Show(sw.ElapsedMilliseconds.ToString());
+                        //System.Threading.Thread.Sleep(150 - (int)sw.ElapsedMilliseconds);
+                        MessageBox.Show(sw.ElapsedMilliseconds.ToString());
 
                         sw.Reset();
                         
@@ -87,7 +88,7 @@ namespace Snake
             freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
-
+            
            
         }
 
@@ -97,6 +98,10 @@ namespace Snake
             // get user input if any
             // set freddie.Direction if given
             // otherwise freddie will continue in last assigned direction
+
+            if (Keyboard.IsKeyDown(Key.Down))
+                freddie.Direction = Utility.Movements.down;
+
         }
        
         private void doSnakeStuff() 
@@ -112,9 +117,8 @@ namespace Snake
         private void drawBoard() 
         {
             // TODO: draw rectangles instead of loading bitmap?
-            Graphics graph;
             graph = CreateGraphics();
-            Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
+            //Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
 
             Board.PositionStates state = Board.PositionStates.empty;
 
@@ -128,8 +132,10 @@ namespace Snake
                     state = Board.GetPositionStatus(x, y);
 
                     // draw segments
-                    if (Board.GetPositionStatus(x,y) == Board.PositionStates.snake)
+                    //if (Board.GetPositionStatus(x,y) == Board.PositionStates.snake)
                         graph.DrawImage(bmSnakeSeg, x * 10, y * 10);
+                        //graph.DrawRectangle(new Pen(Color.White), x * 10, y * 10, 10, 10);
+                    
                 }
             }
              
