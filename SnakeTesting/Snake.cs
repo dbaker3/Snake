@@ -12,6 +12,12 @@ namespace Snake
 
         public Utility.Movements Direction { set; private get; }
 
+        // TODO: keep track of what needs to be drawn and erased --
+        //       This will GREATLY speed up drawing since the entire
+        //       board will not have to be scanned and drawn each move
+        public SnakeSegment SegmentToErase;
+        public SnakeSegment SegmentToDraw;
+
         public Snake()
         {
             Direction = Utility.Movements.right;
@@ -37,6 +43,9 @@ namespace Snake
                         //this.UserGivenDirection = direction; // store new direction
 
                         // TODO: Do move
+
+                        SegmentToDraw = segments[i];
+
                         switch (Direction) // (direction)
                         {
                             case Utility.Movements.up:
@@ -77,12 +86,19 @@ namespace Snake
                         segments[i].X = segments[i - 1].X;
                         segments[i].Y = segments[i - 1].Y;
                         Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+
+                        // for board drawing
+                        if (i == snakeLength - 1) // first loop through -- this is the end of tail piece so erase it
+                            SegmentToErase = segments[i];
                     }
 
                 }
                 else // was new so it didn't move - mark it not new for next time
                 {
                     segments[i].IsNew = false;
+                    
+                    // Don't mark it to erase since it didn't move
+                    SegmentToErase = null;
                 }
 
             }

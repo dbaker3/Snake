@@ -16,6 +16,7 @@ namespace Snake
         Snake freddie;
         Graphics graph;
         Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
+        Bitmap bmBackColor = new Bitmap("../../bmBackColor.png");
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
         public Form1()
@@ -23,7 +24,7 @@ namespace Snake
             InitializeComponent();
             freddie = new Snake();
 
-
+            graph = CreateGraphics();
             
 
 
@@ -42,18 +43,10 @@ namespace Snake
                         doSnakeStuff();
                         drawBoard();
                         
-                        //// graphics testing
-                        //graph = CreateGraphics();
-                        //graph.DrawImage(bmSnakeSeg, 1, 1);
-
-
                         //TODO: wait X ms - time lapsed
                         sw.Stop();
-                        
-
-                        //System.Threading.Thread.Sleep(150 - (int)sw.ElapsedMilliseconds);
-                        MessageBox.Show(sw.ElapsedMilliseconds.ToString());
-
+                        System.Threading.Thread.Sleep(150 - (int)sw.ElapsedMilliseconds);
+                        //MessageBox.Show(sw.ElapsedMilliseconds.ToString());
                         sw.Reset();
                         
                     }
@@ -99,8 +92,8 @@ namespace Snake
             // set freddie.Direction if given
             // otherwise freddie will continue in last assigned direction
 
-            if (Keyboard.IsKeyDown(Key.Down))
-                freddie.Direction = Utility.Movements.down;
+            //if (Keyboard.IsKeyDown(Key.Down))
+                //freddie.Direction = Utility.Movements.down;
 
         }
        
@@ -116,31 +109,33 @@ namespace Snake
 
         private void drawBoard() 
         {
-            // TODO: draw rectangles instead of loading bitmap?
-            graph = CreateGraphics();
+            
+            //graph = CreateGraphics();
             //Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
 
             Board.PositionStates state = Board.PositionStates.empty;
 
-            // TODO: need to query snake for location of each segment instead of looping through board.
-            // Get state of each area of board
-            for (int x = 0; x < Board.PlayfieldWidth; x++)
-            {
-                for (int y = 0; y < Board.PlayfieldHeight; y++)
-                {
-                    // set state on form's board
-                    state = Board.GetPositionStatus(x, y);
+            //// TODO: need to query snake for location of each segment instead of looping through board.
+            //// Get state of each area of board
+            //for (int x = 0; x < Board.PlayfieldWidth; x++)
+            //{
+            //    for (int y = 0; y < Board.PlayfieldHeight; y++)
+            //    {
+            //        // set state on form's board
+            //        state = Board.GetPositionStatus(x, y);
 
-                    // draw segments
-                    //if (Board.GetPositionStatus(x,y) == Board.PositionStates.snake)
-                        graph.DrawImage(bmSnakeSeg, x * 10, y * 10);
-                        //graph.DrawRectangle(new Pen(Color.White), x * 10, y * 10, 10, 10);
-                    
-                }
-            }
-             
-            // draw board on form
-            
+            //        // draw segments
+            //        //if (Board.GetPositionStatus(x,y) == Board.PositionStates.snake)
+            //            graph.DrawImage(bmSnakeSeg, x * 10, y * 10);
+            //            //graph.DrawRectangle(new Pen(Color.White), x * 10, y * 10, 10, 10);
+                        
+            //    }
+            //}    
+         
+            // TODO: query snake for segment to be erased and drawn -- then draw & erase
+            graph.DrawImage(bmSnakeSeg, freddie.SegmentToDraw.X * 10, freddie.SegmentToDraw.Y * 10);
+            graph.DrawImage(bmBackColor, freddie.SegmentToErase.X * 10, freddie.SegmentToErase.Y * 10);    
+
         }
 
 
