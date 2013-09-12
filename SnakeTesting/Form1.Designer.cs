@@ -32,11 +32,13 @@
             this.buttonAddSegment = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonDown = new System.Windows.Forms.Button();
+            this.buttonLeft = new System.Windows.Forms.Button();
+            this.buttonUp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonMoveRight
             // 
-            this.buttonMoveRight.Location = new System.Drawing.Point(226, 274);
+            this.buttonMoveRight.Location = new System.Drawing.Point(105, 460);
             this.buttonMoveRight.Name = "buttonMoveRight";
             this.buttonMoveRight.Size = new System.Drawing.Size(39, 23);
             this.buttonMoveRight.TabIndex = 0;
@@ -46,7 +48,7 @@
             // 
             // buttonAddSegment
             // 
-            this.buttonAddSegment.Location = new System.Drawing.Point(181, 245);
+            this.buttonAddSegment.Location = new System.Drawing.Point(35, 495);
             this.buttonAddSegment.Name = "buttonAddSegment";
             this.buttonAddSegment.Size = new System.Drawing.Size(84, 23);
             this.buttonAddSegment.TabIndex = 1;
@@ -56,15 +58,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(181, 139);
+            this.textBox1.Location = new System.Drawing.Point(15, 316);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(129, 100);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Visible = false;
             // 
             // buttonDown
             // 
-            this.buttonDown.Location = new System.Drawing.Point(181, 274);
+            this.buttonDown.Location = new System.Drawing.Point(60, 460);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(39, 23);
             this.buttonDown.TabIndex = 3;
@@ -72,12 +75,34 @@
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
             // 
+            // buttonLeft
+            // 
+            this.buttonLeft.Location = new System.Drawing.Point(15, 460);
+            this.buttonLeft.Name = "buttonLeft";
+            this.buttonLeft.Size = new System.Drawing.Size(39, 23);
+            this.buttonLeft.TabIndex = 4;
+            this.buttonLeft.Text = "<-";
+            this.buttonLeft.UseVisualStyleBackColor = true;
+            this.buttonLeft.Click += new System.EventHandler(this.buttonLeft_Click);
+            // 
+            // buttonUp
+            // 
+            this.buttonUp.Location = new System.Drawing.Point(60, 431);
+            this.buttonUp.Name = "buttonUp";
+            this.buttonUp.Size = new System.Drawing.Size(39, 23);
+            this.buttonUp.TabIndex = 5;
+            this.buttonUp.Text = "^";
+            this.buttonUp.UseVisualStyleBackColor = true;
+            this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(337, 320);
+            this.ClientSize = new System.Drawing.Size(592, 530);
+            this.Controls.Add(this.buttonUp);
+            this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonAddSegment);
@@ -97,6 +122,8 @@
         private System.Windows.Forms.Button buttonAddSegment;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonDown;
+        private System.Windows.Forms.Button buttonLeft;
+        private System.Windows.Forms.Button buttonUp;
     }
 }
 

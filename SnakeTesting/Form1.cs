@@ -19,6 +19,10 @@ namespace Snake
         Bitmap bmBackColor = new Bitmap("../../bmBackColor.png");
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
+        const int SNAKESPEED = 500; //milliseconds
+        const int BITMAPOFFSET = 10; //pixels
+
+
         public Form1()
         {
             InitializeComponent();
@@ -45,7 +49,7 @@ namespace Snake
                         
                         //TODO: wait X ms - time lapsed
                         sw.Stop();
-                        System.Threading.Thread.Sleep(150 - (int)sw.ElapsedMilliseconds);
+                        System.Threading.Thread.Sleep(SNAKESPEED - (int)sw.ElapsedMilliseconds);
                         //MessageBox.Show(sw.ElapsedMilliseconds.ToString());
                         sw.Reset();
                         
@@ -54,6 +58,15 @@ namespace Snake
             bw.RunWorkerAsync();
 
                         
+        }
+
+
+
+
+
+        private void buttonAddSegment_Click(object sender, EventArgs e)
+        {
+            freddie.GrowSegment();
         }
 
         private void buttonMoveRight_Click(object sender, EventArgs e)
@@ -67,11 +80,6 @@ namespace Snake
             textBox1.Text = freddie.GetLocations();
         }
 
-        private void buttonAddSegment_Click(object sender, EventArgs e)
-        {
-            freddie.GrowSegment();
-        }
-
         private void buttonDown_Click(object sender, EventArgs e)
         {
             //Utility.Movements direction = Utility.Movements.down;
@@ -81,9 +89,30 @@ namespace Snake
             freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
-            
-           
         }
+
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            freddie.Direction = Utility.Movements.left;
+            freddie.Move();
+
+            textBox1.Text = freddie.GetLocations();
+        }
+
+        private void buttonUp_Click(object sender, EventArgs e)
+        {
+            freddie.Direction = Utility.Movements.up;
+            freddie.Move();
+
+            textBox1.Text = freddie.GetLocations();
+        }
+
+
+
+
+
+
+
 
 
         private void getUserInput() 
@@ -113,7 +142,7 @@ namespace Snake
             //graph = CreateGraphics();
             //Bitmap bmSnakeSeg = new Bitmap("../../bmSnakeSeg.png");
 
-            Board.PositionStates state = Board.PositionStates.empty;
+            //Board.PositionStates state = Board.PositionStates.empty;
 
             //// TODO: need to query snake for location of each segment instead of looping through board.
             //// Get state of each area of board
@@ -133,10 +162,13 @@ namespace Snake
             //}    
          
             // TODO: query snake for segment to be erased and drawn -- then draw & erase
-            graph.DrawImage(bmSnakeSeg, freddie.SegmentToDraw.X * 10, freddie.SegmentToDraw.Y * 10);
-            graph.DrawImage(bmBackColor, freddie.SegmentToErase.X * 10, freddie.SegmentToErase.Y * 10);    
+            graph.DrawImage(bmSnakeSeg, freddie.SegmentToDraw.X * BITMAPOFFSET, freddie.SegmentToDraw.Y * BITMAPOFFSET);
+            if (freddie.SegmentToErase != null)
+                graph.DrawImage(bmBackColor, freddie.SegmentToErase.X * BITMAPOFFSET, freddie.SegmentToErase.Y * BITMAPOFFSET);    
 
         }
+
+
 
 
 
