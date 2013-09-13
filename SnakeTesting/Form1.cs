@@ -19,7 +19,7 @@ namespace Snake
         Bitmap bmBackColor = new Bitmap("../../bmBackColor.png");
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
-        const int SNAKESPEED = 500; //milliseconds
+        const int SNAKESPEED = 300; //milliseconds
         const int BITMAPOFFSET = 10; //pixels
 
 
@@ -38,6 +38,8 @@ namespace Snake
             bw.DoWork += new DoWorkEventHandler(
             delegate(object o, DoWorkEventArgs args)
                 {
+                    //drawBoard(); // draw initial board
+
                     while (true)    // Game Loop
                     {
                         //TODO: check time
@@ -75,9 +77,11 @@ namespace Snake
             //freddie.Move(direction);
 
             freddie.Direction = Utility.Movements.right;
-            freddie.Move();
+            //freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
+
+
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
@@ -86,7 +90,7 @@ namespace Snake
             //freddie.Move(direction);
 
             freddie.Direction = Utility.Movements.down;
-            freddie.Move();
+            //freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
         }
@@ -94,7 +98,7 @@ namespace Snake
         private void buttonLeft_Click(object sender, EventArgs e)
         {
             freddie.Direction = Utility.Movements.left;
-            freddie.Move();
+            //freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
         }
@@ -102,7 +106,7 @@ namespace Snake
         private void buttonUp_Click(object sender, EventArgs e)
         {
             freddie.Direction = Utility.Movements.up;
-            freddie.Move();
+            //freddie.Move();
 
             textBox1.Text = freddie.GetLocations();
         }
@@ -165,6 +169,11 @@ namespace Snake
             graph.DrawImage(bmSnakeSeg, freddie.SegmentToDraw.X * BITMAPOFFSET, freddie.SegmentToDraw.Y * BITMAPOFFSET);
             if (freddie.SegmentToErase != null)
                 graph.DrawImage(bmBackColor, freddie.SegmentToErase.X * BITMAPOFFSET, freddie.SegmentToErase.Y * BITMAPOFFSET);    
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
 

@@ -38,7 +38,7 @@
             // 
             // buttonMoveRight
             // 
-            this.buttonMoveRight.Location = new System.Drawing.Point(105, 460);
+            this.buttonMoveRight.Location = new System.Drawing.Point(541, 449);
             this.buttonMoveRight.Name = "buttonMoveRight";
             this.buttonMoveRight.Size = new System.Drawing.Size(39, 23);
             this.buttonMoveRight.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             // buttonAddSegment
             // 
-            this.buttonAddSegment.Location = new System.Drawing.Point(35, 495);
+            this.buttonAddSegment.Location = new System.Drawing.Point(471, 484);
             this.buttonAddSegment.Name = "buttonAddSegment";
             this.buttonAddSegment.Size = new System.Drawing.Size(84, 23);
             this.buttonAddSegment.TabIndex = 1;
@@ -58,16 +58,15 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 316);
+            this.textBox1.Location = new System.Drawing.Point(451, 305);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(129, 100);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Visible = false;
             // 
             // buttonDown
             // 
-            this.buttonDown.Location = new System.Drawing.Point(60, 460);
+            this.buttonDown.Location = new System.Drawing.Point(496, 449);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(39, 23);
             this.buttonDown.TabIndex = 3;
@@ -77,7 +76,7 @@
             // 
             // buttonLeft
             // 
-            this.buttonLeft.Location = new System.Drawing.Point(15, 460);
+            this.buttonLeft.Location = new System.Drawing.Point(451, 449);
             this.buttonLeft.Name = "buttonLeft";
             this.buttonLeft.Size = new System.Drawing.Size(39, 23);
             this.buttonLeft.TabIndex = 4;
@@ -87,7 +86,7 @@
             // 
             // buttonUp
             // 
-            this.buttonUp.Location = new System.Drawing.Point(60, 431);
+            this.buttonUp.Location = new System.Drawing.Point(496, 420);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(39, 23);
             this.buttonUp.TabIndex = 5;
@@ -111,6 +110,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Snake";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

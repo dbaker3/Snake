@@ -25,6 +25,7 @@ namespace Snake
             segments.Add(new SnakeSegment(0, 2, true, false)); // snake head
             segments.Add(new SnakeSegment(0, 1, false, false));
             segments.Add(new SnakeSegment(0, 0, false, false));
+            
         }
         
         public void Move() //Utility.Movements direction = Utility.Movements.same)
