@@ -22,71 +22,130 @@ namespace Snake
         {
             Direction = Utility.Movements.right;
             segments = new List<SnakeSegment>();
-            segments.Add(new SnakeSegment(0, 2, true, false)); // snake head
-            segments.Add(new SnakeSegment(0, 1, false, false));
-            segments.Add(new SnakeSegment(0, 0, false, false));
-            
+            segments.Add(new SnakeSegment(4, 2, true, false)); // snake head
+            //Board.SetPositionStatus(4, 2, Board.PositionStates.snake);
+            segments.Add(new SnakeSegment(3, 2, false, false));
+            //Board.SetPositionStatus(3, 2, Board.PositionStates.snake);
+            segments.Add(new SnakeSegment(2, 2, false, false));
+            //Board.SetPositionStatus(2, 2, Board.PositionStates.snake);
+
+            Board.PlaceFood(segments); // place initial piece of food
+
         }
         
-        public void Move() //Utility.Movements direction = Utility.Movements.same)
+        public void Move()
         {
+
+            //foreach (SnakeSegment a in segments)
+            //{
+            //    System.Windows.Forms.MessageBox.Show(Board.GetPositionStatus(a.X, a.Y).ToString()  );
+            //}
+
+         
             int snakeLength = segments.Count;
             for (int i = snakeLength - 1; i >= 0; i--) // Move each segment starting at END OF TAIL
             {
                 if (!segments[i].IsNew) // move it if not new
                 {
-                    //segments[i].AnnounceLocation();
                     if (segments[i].IsHead)
                     {
-                        //if (direction == Utility.Movements.same)
-                        //    direction = this.UserGivenDirection; // use previous direction
-
-                        //this.UserGivenDirection = direction; // store new direction
-
-                        // TODO: Do move
-
                         SegmentToDraw = segments[i];
 
-                        switch (Direction) // (direction)
+                        switch (Direction)
                         {
                             case Utility.Movements.up:
                                 // TODO: boundary check
+                                if (segments[i].Y <= 0)
+                                    endGame();
+
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
-                                segments[i].X = segments[i].X;
+                                //segments[i].X = segments[i].X;
                                 segments[i].Y -= 1;
-                                Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+                                //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
+                                    endGame();
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
+                                {
+                                    GrowSegment();
+                                    Board.PlaceFood(segments);
+                                }
+
                                 break;
                             case Utility.Movements.down:
                                 // TODO: boundary check
+                                if (segments[i].Y >= Board.PlayfieldHeight - 1)
+                                    endGame();
+
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
-                                segments[i].X = segments[i].X;
+                                //segments[i].X = segments[i].X;
                                 segments[i].Y += 1;
-                                Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+                                //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
+                                    endGame();
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
+                                {
+                                    GrowSegment();
+                                    Board.PlaceFood(segments);
+                                }
+
                                 break;
                             case Utility.Movements.left:
                                 // TODO: boundary check
+                                if (segments[i].X <= 0)
+                                    endGame();
+
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                                 segments[i].X -= 1;
-                                segments[i].Y = segments[i].Y;
-                                Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+                                //segments[i].Y = segments[i].Y;
+                                //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
+                                    endGame();
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
+                                {
+                                    GrowSegment();
+                                    Board.PlaceFood(segments);
+                                }
+
                                 break;
                             case Utility.Movements.right:
                                 // TODO: boundary check
+                                if (segments[i].X >= Board.PlayfieldWidth - 1)
+                                    endGame();
+
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                                 segments[i].X += 1;
-                                segments[i].Y = segments[i].Y;
-                                Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+                                //segments[i].Y = segments[i].Y;
+                                //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
+                                    endGame();
+
+                                if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
+                                {
+                                    GrowSegment();
+                                    Board.PlaceFood(segments);
+                                }
+
                                 break;
                             default:
                                 break;
                         }
+
+
+
                     }
                     else // not head
                     { // move to same spot as leading segment 
                         Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                         segments[i].X = segments[i - 1].X;
                         segments[i].Y = segments[i - 1].Y;
-                        Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+                        //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
 
                         // for board drawing
                         if (i == snakeLength - 1) // first loop through -- this is the end of tail piece so erase it
@@ -97,12 +156,20 @@ namespace Snake
                 else // was new so it didn't move - mark it not new for next time
                 {
                     segments[i].IsNew = false;
-                    
+                    //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
+
                     // Don't mark it to erase since it didn't move
                     SegmentToErase = null;
                 }
 
+                foreach (SnakeSegment seg in segments)
+                {
+                    Board.SetPositionStatus(seg.X, seg.Y, Board.PositionStates.snake);
+                }
+
+                
             }
+          
         }
 
         public void GrowSegment()
@@ -118,7 +185,7 @@ namespace Snake
             //System.Windows.Forms.MessageBox.Show(segments.Count.ToString());
         }
 
-        public string GetLocations() // TODO: this will eventually need to return usable values so that the snake can be drawn. Right now it just returns a string to be shown in a textbox.
+        public string GetLocations() // I think this is just used for testing
         {
             
             int snakelength = segments.Count;
@@ -130,6 +197,12 @@ namespace Snake
 
             }
             return locations;
+        }
+
+        private void endGame()
+        {
+            System.Windows.Forms.MessageBox.Show("Dead");
+            System.Threading.Thread.CurrentThread.Abort(); // I think this is bad practice
         }
         
     }

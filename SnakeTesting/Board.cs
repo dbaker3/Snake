@@ -12,8 +12,13 @@ namespace Snake
 
     static class Board
     {
-        public const int PlayfieldWidth = 50;
-        public const int PlayfieldHeight = 50;
+        public const int PlayfieldWidth = 30;
+        public const int PlayfieldHeight = 30;
+
+        public static int FoodX { get; set; }
+        public static int FoodY { get; set; }
+
+        private static Random rand = new Random();
 
         public enum PositionStates
         {
@@ -43,7 +48,25 @@ namespace Snake
             return Playfield[x, y];
         }
 
-      
+        public static void PlaceFood(List<SnakeSegment> segments)
+        {
+            bool placedWhereSnakeIs = true;
+            // Make sure food isn't place where snake currently is
+            while (placedWhereSnakeIs)
+            {
+                FoodX = rand.Next(PlayfieldWidth);
+                FoodY = rand.Next(PlayfieldHeight);
+
+                foreach (SnakeSegment seg in segments)
+                {
+                    if (seg.X != FoodX && seg.Y != FoodY)
+                        placedWhereSnakeIs = false;
+                }
+
+            }
+            
+            SetPositionStatus(FoodX, FoodY, PositionStates.food);
+        }
 
     }
 }
