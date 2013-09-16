@@ -51,9 +51,10 @@ namespace Snake
         public static void PlaceFood(List<SnakeSegment> segments)
         {
             bool placedWhereSnakeIs = true;
-            // Make sure food isn't place where snake currently is
+            // Make sure food isn't placed where snake currently is
             while (placedWhereSnakeIs)
             {
+
                 FoodX = rand.Next(PlayfieldWidth);
                 FoodY = rand.Next(PlayfieldHeight);
 
@@ -61,6 +62,8 @@ namespace Snake
                 {
                     if (seg.X != FoodX && seg.Y != FoodY)
                         placedWhereSnakeIs = false;
+                    else
+                        placedWhereSnakeIs = true;
                 }
 
             }

@@ -20,8 +20,9 @@ namespace Snake
         Bitmap bmFood = new Bitmap("../../bmFood.png");
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
-        const int SNAKESPEEDDELAY = 100; //milliseconds
+        
         const int BITMAPOFFSET = 10; //pixels
+        int SnakeSpeedDelay = 100; //milliseconds
 
         public Form1()
         {
@@ -47,7 +48,7 @@ namespace Snake
                         
                         // Wait in order to slow animation speed
                         sw.Stop();
-                        System.Threading.Thread.Sleep(SNAKESPEEDDELAY - (int)sw.ElapsedMilliseconds);
+                        System.Threading.Thread.Sleep(SnakeSpeedDelay - (int)sw.ElapsedMilliseconds);
                         sw.Reset();                
                     }
                 });
@@ -88,8 +89,17 @@ namespace Snake
                 case Keys.Down:
                     freddie.Direction = Utility.Movements.down;
                     break;
+
+                // Cheats
+                case Keys.Subtract:
+                    if (SnakeSpeedDelay <= 200)
+                        SnakeSpeedDelay += 25;
+                    break;
+                case Keys.Add:
+                    if (SnakeSpeedDelay >= 50)
+                        SnakeSpeedDelay -= 25;
+                    break;
                 default:
-                    //freddie.GrowSegment(); // T E S T I N G !!!!!!!!!!!!!!!!!
                     break;
             }
         }

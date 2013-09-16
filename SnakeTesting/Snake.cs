@@ -11,6 +11,7 @@ namespace Snake
         List<SnakeSegment> segments;
 
         public Utility.Movements Direction { set; private get; }
+        private enum methodOfDeath { wall, snake, explosion };
 
         // TODO: keep track of what needs to be drawn and erased --
         //       This will GREATLY speed up drawing since the entire
@@ -18,8 +19,11 @@ namespace Snake
         public SnakeSegment SegmentToErase;
         public SnakeSegment SegmentToDraw;
 
+        public int Score { get; private set; }
+
         public Snake()
         {
+            Score = 0;
             Direction = Utility.Movements.right;
             segments = new List<SnakeSegment>();
             segments.Add(new SnakeSegment(4, 2, true, false)); // snake head
@@ -56,7 +60,7 @@ namespace Snake
                             case Utility.Movements.up:
                                 // TODO: boundary check
                                 if (segments[i].Y <= 0)
-                                    endGame();
+                                    endGame(methodOfDeath.wall);
 
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                                 //segments[i].X = segments[i].X;
@@ -64,10 +68,11 @@ namespace Snake
                                 //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
-                                    endGame();
+                                    endGame(methodOfDeath.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
                                 {
+                                    Score++;
                                     GrowSegment();
                                     Board.PlaceFood(segments);
                                 }
@@ -76,7 +81,7 @@ namespace Snake
                             case Utility.Movements.down:
                                 // TODO: boundary check
                                 if (segments[i].Y >= Board.PlayfieldHeight - 1)
-                                    endGame();
+                                    endGame(methodOfDeath.wall);
 
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                                 //segments[i].X = segments[i].X;
@@ -84,10 +89,11 @@ namespace Snake
                                 //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
-                                    endGame();
+                                    endGame(methodOfDeath.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
                                 {
+                                    Score++;
                                     GrowSegment();
                                     Board.PlaceFood(segments);
                                 }
@@ -96,7 +102,7 @@ namespace Snake
                             case Utility.Movements.left:
                                 // TODO: boundary check
                                 if (segments[i].X <= 0)
-                                    endGame();
+                                    endGame(methodOfDeath.wall);
 
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                                 segments[i].X -= 1;
@@ -104,10 +110,11 @@ namespace Snake
                                 //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
-                                    endGame();
+                                    endGame(methodOfDeath.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
                                 {
+                                    Score++;
                                     GrowSegment();
                                     Board.PlaceFood(segments);
                                 }
@@ -116,7 +123,7 @@ namespace Snake
                             case Utility.Movements.right:
                                 // TODO: boundary check
                                 if (segments[i].X >= Board.PlayfieldWidth - 1)
-                                    endGame();
+                                    endGame(methodOfDeath.wall);
 
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
                                 segments[i].X += 1;
@@ -124,10 +131,11 @@ namespace Snake
                                 //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
-                                    endGame();
+                                    endGame(methodOfDeath.snake);
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
                                 {
+                                    Score++;
                                     GrowSegment();
                                     Board.PlaceFood(segments);
                                 }
@@ -199,10 +207,18 @@ namespace Snake
             return locations;
         }
 
-        private void endGame()
+        private void endGame(methodOfDeath mod)
         {
-            System.Windows.Forms.MessageBox.Show("Dead");
-            System.Threading.Thread.CurrentThread.Abort(); // I think this is bad practice
+            string death = "You've died.";
+            if (mod == methodOfDeath.wall)
+                death = "You've eaten the wall.";
+            if (mod == methodOfDeath.snake)
+                death = "Why are you biting yourself?";
+            if (mod == methodOfDeath.explosion)
+                death = "BOOOOOOM!";
+            System.Windows.Forms.MessageBox.Show(death + "\r\nScore: " + Score);
+
+            System.Threading.Thread.CurrentThread.Abort(); // TODO: I think this is bad practice
         }
         
     }
