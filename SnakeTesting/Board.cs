@@ -63,7 +63,10 @@ namespace Snake
                     if (seg.X != FoodX && seg.Y != FoodY)
                         placedWhereSnakeIs = false;
                     else
+                    {
                         placedWhereSnakeIs = true;
+                        break;
+                    }
                 }
 
             }

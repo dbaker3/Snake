@@ -99,6 +99,7 @@ namespace Snake
                     if (SnakeSpeedDelay >= 50)
                         SnakeSpeedDelay -= 25;
                     break;
+                
                 default:
                     break;
             }
