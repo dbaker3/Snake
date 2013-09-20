@@ -71,6 +71,17 @@ namespace Snake
 
             // food
             graph.DrawImage(bmFood, Board.FoodX * BITMAPOFFSET, Board.FoodY * BITMAPOFFSET);
+
+            //TESTING
+            graph.DrawImage(bmBackColor, 0, 0);
+            graph.DrawImage(bmBackColor, 0, 10);
+            graph.DrawImage(bmBackColor, 10, 0);
+            graph.DrawImage(bmBackColor, 10, 10);
+
+
+
+            graph.DrawString(freddie.Score.ToString(), SystemFonts.StatusFont, Brushes.White, 0, 0);
+            
         }   
 
         private void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -78,16 +89,20 @@ namespace Snake
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    freddie.Direction = Utility.Movements.right;
+                    if (freddie.Direction != Utility.Movements.left) // keeps snake from going backward  TODO: not working
+                        freddie.Direction = Utility.Movements.right; // and killing himself                    properly
                     break;
                 case Keys.Left:
-                    freddie.Direction = Utility.Movements.left;
+                    if (freddie.Direction != Utility.Movements.right)
+                        freddie.Direction = Utility.Movements.left;
                     break;
                 case Keys.Up:
-                    freddie.Direction = Utility.Movements.up;
+                    if (freddie.Direction != Utility.Movements.down)
+                        freddie.Direction = Utility.Movements.up;
                     break;
                 case Keys.Down:
-                    freddie.Direction = Utility.Movements.down;
+                    if (freddie.Direction != Utility.Movements.up)
+                        freddie.Direction = Utility.Movements.down;
                     break;
 
                 // Cheats

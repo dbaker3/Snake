@@ -10,7 +10,8 @@ namespace Snake
     {
         List<SnakeSegment> segments;
 
-        public Utility.Movements Direction { set; private get; }
+        public Utility.Movements Direction { set; get; }
+       // private Utility.Movements previousDirection { set; get; }
         private enum methodOfDeath { wall, snake, explosion };
 
         // TODO: keep track of what needs to be drawn and erased --
@@ -26,12 +27,10 @@ namespace Snake
             Score = 0;
             Direction = Utility.Movements.right;
             segments = new List<SnakeSegment>();
-            segments.Add(new SnakeSegment(4, 2, true, false)); // snake head
-            //Board.SetPositionStatus(4, 2, Board.PositionStates.snake);
+            segments.Add(new SnakeSegment(4, 2, true, false)); // head
             segments.Add(new SnakeSegment(3, 2, false, false));
-            //Board.SetPositionStatus(3, 2, Board.PositionStates.snake);
             segments.Add(new SnakeSegment(2, 2, false, false));
-            //Board.SetPositionStatus(2, 2, Board.PositionStates.snake);
+
 
             Board.PlaceFood(segments); // place initial piece of food
 
@@ -62,13 +61,14 @@ namespace Snake
                                 if (segments[i].Y <= 0)
                                     endGame(methodOfDeath.wall);
 
+
                                 Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.empty);
-                                //segments[i].X = segments[i].X;
                                 segments[i].Y -= 1;
-                                //Board.SetPositionStatus(segments[i].X, segments[i].Y, Board.PositionStates.snake);
+
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.snake)
                                     endGame(methodOfDeath.snake);
+                                
 
                                 if (Board.GetPositionStatus(segments[i].X, segments[i].Y) == Board.PositionStates.food)
                                 {
@@ -219,6 +219,7 @@ namespace Snake
             System.Windows.Forms.MessageBox.Show(death + "\r\nScore: " + Score);
 
             System.Threading.Thread.CurrentThread.Abort(); // TODO: I think this is bad practice
+            
         }
         
     }
