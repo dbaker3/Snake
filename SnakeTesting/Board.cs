@@ -60,12 +60,14 @@ namespace Snake
 
                 foreach (SnakeSegment seg in segments)
                 {
-                    if (seg.X != FoodX && seg.Y != FoodY)
-                        placedWhereSnakeIs = false;
-                    else
+                    if ((seg.X == FoodX) && (seg.Y == FoodY))
                     {
                         placedWhereSnakeIs = true;
                         break;
+                    }
+                    else
+                    {
+                        placedWhereSnakeIs = false;
                     }
                 }
 

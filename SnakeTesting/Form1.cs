@@ -72,15 +72,12 @@ namespace Snake
             // food
             graph.DrawImage(bmFood, Board.FoodX * BITMAPOFFSET, Board.FoodY * BITMAPOFFSET);
 
-            //TESTING
-            graph.DrawImage(bmBackColor, 0, 0);
-            graph.DrawImage(bmBackColor, 0, 10);
-            graph.DrawImage(bmBackColor, 10, 0);
-            graph.DrawImage(bmBackColor, 10, 10);
-
-
-
-            graph.DrawString(freddie.Score.ToString(), SystemFonts.StatusFont, Brushes.White, 0, 0);
+            ////TESTING - Draw score on board
+            //graph.DrawImage(bmBackColor, 0, 0);
+            //graph.DrawImage(bmBackColor, 0, 10);
+            //graph.DrawImage(bmBackColor, 10, 0);
+            //graph.DrawImage(bmBackColor, 10, 10);
+            //graph.DrawString(freddie.Score.ToString(), SystemFonts.StatusFont, Brushes.White, 0, 0);
             
         }   
 
@@ -119,6 +116,8 @@ namespace Snake
                     break;
             }
         }
+
+
 
 
 

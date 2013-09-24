@@ -217,6 +217,8 @@ namespace Snake
             if (mod == methodOfDeath.explosion)
                 death = "BOOOOOOM!";
             System.Windows.Forms.MessageBox.Show(death + "\r\nScore: " + Score);
+            
+            
 
             System.Threading.Thread.CurrentThread.Abort(); // TODO: I think this is bad practice
             
